@@ -1,5 +1,3 @@
-docker exec -it --user root jenkins-blueocean bash
-
 #!/bin/bash
 
 if ! command -v python3 &> /dev/null

@@ -1,57 +1,45 @@
 pipeline {
-    agent { 
-        node {
-            label 'docker-agent-python'
-            }   
-      }
-    triggers {
-        pollSCM 'H/5 * * * *'
-    } 
+    agent any  // or specify a custom agent like 'docker'
+
+    environment {
+        VIRTUAL_ENV_PATH = 'venv'  // Relative path to the virtual environment
+        REQUIREMENTS_FILE = 'requirements.txt'  // Relative path to the requirements.txt file
+    }
+
     stages {
-       stage('Setup Python Virtual Environment') {
+        stage('Set up Virtual Environment') {
             steps {
                 script {
-                    // Navigate to the project directory (if needed)
-                    dir('myapp') {
-                        // Create virtual environment
-                        
-                        // Activate the virtual environment
-                        // Install dependencies from requirements.txt
-                        sh 'whoami'
-                        sh '''
-                        python3 --version
-                        pip3 --version
-                            '''
-                    }
+                    // Running shell script as before
+                    sh '''
+                    pwd
+                    ls -la
+                    '''
+                    sh '''
+                    #!/bin/bash
+
+                    # Activate the virtual environment
+                    source $VIRTUAL_ENV_PATH/bin/activate
+
+                    # Check if the virtual environment was activated
+                    if [ -z "$VIRTUAL_ENV" ]; then
+                        echo "Virtual environment not activated!"
+                        exit 1
+                    fi
+
+                    # Install requirements from requirements.txt
+                    if [ -f "$REQUIREMENTS_FILE" ]; then
+                        echo "Installing dependencies from requirements.txt..."
+                        pip install -r $REQUIREMENTS_FILE
+                    else
+                        echo "requirements.txt not found!"
+                        exit 1
+                    fi
+
+                    # Optionally, deactivate the virtual environment after installation
+                    deactivate
+                    '''
                 }
-            }
-        }
-        stage('Build') {
-            steps {
-                echo "Building.."
-                sh '''
-                cd myapp
-                python3 helloworld.py --name Achouri
-                '''
-            }
-        }
-        stage('Test') {
-            steps {
-                echo "Testing.."
-                sh '''
-                cd myapp
-                python3 helloworld.py --name Jenkins
-                python3 helloworld.py
-                python3 -m unittest discover -s tests -p '*_test.py'
-                '''
-            }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
             }
         }
     }

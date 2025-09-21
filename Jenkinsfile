@@ -12,7 +12,9 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    pip3 install fire
+                        python3 -m venv /myapp/venv
+                        . /myapp/venv/bin/activate
+                        pip3 install fire
                     '''
                 }
             }

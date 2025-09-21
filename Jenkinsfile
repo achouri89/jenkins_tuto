@@ -13,8 +13,8 @@ pipeline {
                 echo "Building.."
                 sh '''
                 cd myapp
-                    python3 -m venv /path/to/venv
-                    . /path/to/venv/bin/activate
+                    python3 -m venv /myapp/venv
+                    . /myapp/venv/bin/activate
                      pip install requirements.txt
                      deactivate
                 '''

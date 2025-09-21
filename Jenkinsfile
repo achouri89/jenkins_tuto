@@ -6,11 +6,6 @@ pipeline {
         REQUIREMENTS_FILE = 'myapp/requirements.txt'  // Relative path to the requirements.txt file
     }
 
-    tools {
-    // Define any tools needed, e.g., Python
-    python 'Python3'  // Ensure 'Python3' is configured in Jenkins global tools
-    }   
-
     stages {
 
         stage('install dependencies') {

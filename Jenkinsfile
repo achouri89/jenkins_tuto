@@ -1,5 +1,12 @@
 pipeline {
-    agent any  // or specify a custom agent like 'docker'
+        agent { 
+        node {
+            label 'docker-agent-python'
+            }   
+      }
+    triggers {
+        pollSCM 'H/5 * * * *'
+    } 
 
     environment {
         VIRTUAL_ENV_PATH = '/venv'  // Relative path to the virtual environment

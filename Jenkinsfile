@@ -2,7 +2,7 @@ pipeline {
     agent any  // or specify a custom agent like 'docker'
 
     environment {
-        VIRTUAL_ENV_PATH = '/venv'  // Relative path to the virtual environment
+        VIRTUAL_ENV_PATH = 'venv'  // Relative path to the virtual environment
         REQUIREMENTS_FILE = '/requirements.txt'  // Relative path to the requirements.txt file
     }
 

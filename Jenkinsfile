@@ -23,13 +23,7 @@ pipeline {
                             pip install --upgrade pip
                         '''
                         sh 'whoami'
-                        sh '''
-                            if [ -f requirements.txt ]; then
-                                pip install -r requirements.txt
-                            else
-                                echo "No requirements.txt file found."
-                            fi
-                        '''
+                        sh 'apk install fire'
                     }
                 }
             }

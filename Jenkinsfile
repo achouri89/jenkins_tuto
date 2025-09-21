@@ -17,17 +17,14 @@ pipeline {
                     }
                     // Activate virtual environment and install dependencies
                     sh """
-                        cd myapp/venv/bin/
-                        pwd
-                        """
-                    sh """
                         cd myapp/
                         . ${VIRTUAL_ENV_PATH}/bin/activate
                         pip install --upgrade pip
+                        pwd
                         pip install -r ${REQUIREMENTS_FILE}
                     """
-                }
-            }
-        }
+                 }
+             }
+        }   
     }
 }

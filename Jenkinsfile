@@ -16,6 +16,9 @@ pipeline {
                     ls -la
                     '''
                     sh '''
+                    cd myapp
+                    python3 --version
+                    python3 -m venv venv
                     #!/bin/bash
 
                     # Activate the virtual environment

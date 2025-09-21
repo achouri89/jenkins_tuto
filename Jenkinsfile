@@ -7,46 +7,36 @@ pipeline {
     }
 
     stages {
-        stage('Set up Virtual Environment') {
+        stage('Setup Virtual Environment') {
             steps {
                 script {
-                    // Running shell script as before
-                    sh '''
-                    pwd
-                    ls -la
-                    '''
-                    sh '''
-                    cd myapp
-                    python3 --version
-                    apt update
-                    apt install python3-venv -y
+                    // Create virtual environment
+                    sh "cd myapp && python3 -m venv ${env.VIRTUAL_ENV_PATH}"
+            
+                }
+            }
+        }
 
-                    python3 -m venv venv
-                    ls -la
-                    cd /venv
-                    #!/bin/bash
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Activate virtual environment and install dependencies
+                    sh """
+                        source ${env.VIRTUAL_ENV_PATH}/bin/activate
+                        pip install -r ${env.REQUIREMENTS_FILE}
+                    """
+                }
+            }
+        }
 
-                    # Activate the virtual environment
-                    . $VIRTUAL_ENV_PATH/bin/activate
-
-                    # Check if the virtual environment was activated
-                    if [ -z "$VIRTUAL_ENV" ]; then
-                        echo "Virtual environment not activated!"
-                        exit 1
-                    fi
-
-                    # Install requirements from requirements.txt
-                    if [ -f "$REQUIREMENTS_FILE" ]; then
-                        echo "Installing dependencies from requirements.txt..."
-                        pip install -r $REQUIREMENTS_FILE
-                    else
-                        echo "requirements.txt not found!"
-                        exit 1
-                    fi
-
-                    # Optionally, deactivate the virtual environment after installation
-                    deactivate
-                    '''
+        stage('Run Tests') {
+            steps {
+                script {
+                    // Activate virtual environment and run tests
+                    sh """
+                        source ${env.VIRTUAL_ENV_PATH}/bin/activate
+                        pytest tests/  // Adjust the test command as needed
+                    """
                 }
             }
         }

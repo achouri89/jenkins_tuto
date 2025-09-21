@@ -26,7 +26,7 @@ pipeline {
                     #!/bin/bash
 
                     # Activate the virtual environment
-                    source $VIRTUAL_ENV_PATH/bin/activate
+                    . /$VIRTUAL_ENV_PATH/bin/activate
 
                     # Check if the virtual environment was activated
                     if [ -z "$VIRTUAL_ENV" ]; then

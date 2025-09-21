@@ -14,7 +14,7 @@ pipeline {
                     echo "Setting up Python Virtual Environment.."
                     // Navigate to the project directory
                     //cd myapp
-                    sh 'cd myapp && python3 -m venv venv && . venv/bin/activate && pip install fire && deactivate'
+                    sh 'cd myapp && python3 -m venv venv && . venv/bin/activate && pip install fire && deactivate nondestructive'
                 }
             }
         }

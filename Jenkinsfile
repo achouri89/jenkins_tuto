@@ -14,10 +14,11 @@ pipeline {
                     echo "Setting up Python Virtual Environment.."
                     // Navigate to the project directory
                     //cd myapp
+                    sh 'cd myapp && python3 -m venv venv && . venv/bin/activate && pip install fire'
                     // Create a virtual environment
                     //sh 'python3 -m venv venv'
                     // Activate the virtual environment and install dependencies
-                    
+
                     //sh '''
                     //    python3 -m venv /myapp/venv
                     //    . /myapp/venv/bin/activate

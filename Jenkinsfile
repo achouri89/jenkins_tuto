@@ -12,7 +12,8 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                echo "doing build stuff.."
+                cd myapp
+                pip install requrements.txt
                 '''
             }
         }
@@ -20,7 +21,10 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                echo "doing test stuff.."
+                cd myapp
+                python3 helloworld.py --name Jenkins
+                python3 helloworld.py
+                python3 -m unittest discover -s tests -p '*_test.py'
                 '''
             }
         }

@@ -17,10 +17,19 @@ pipeline {
                         sh 'python3 -m venv venv'
                         
                         // Activate the virtual environment
-                        sh '. venv/bin/activate && pip install --upgrade pip' // Upgrade pip if needed
-                        
                         // Install dependencies from requirements.txt
-                        sh '. venv/bin/activate && pip install -r requirements.txt'
+                        sh '''
+                            . venv/bin/activate
+                            pip install --upgrade pip
+                        '''
+                        sh 'whoami'
+                        sh '''
+                            if [ -f requirements.txt ]; then
+                                pip install -r requirements.txt
+                            else
+                                echo "No requirements.txt file found."
+                            fi
+                        '''
                     }
                 }
             }

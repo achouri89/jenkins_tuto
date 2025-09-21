@@ -8,15 +8,27 @@ pipeline {
         pollSCM 'H/5 * * * *'
     } 
     stages {
+        stage('Setup Python Virtual Environment') {
+            steps {
+                script {
+                    sh 'cd myapp'
+                    // Create a virtual environment
+                    sh 'python3 -m venv venv'
+                    // Activate the virtual environment and install dependencies
+                    sh '''
+                    source venv/bin/activate
+                    pip install -r requirements.txt
+                    '''
+                    sh 'deactivate'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 echo "Building.."
                 sh '''
                 cd myapp
-                    python3 -m venv /myapp/venv
-                    . /myapp/venv/bin/activate
-                     pip install requirements.txt
-                     deactivate
+                python3 helloworld.py --name Achouri
                 '''
             }
         }

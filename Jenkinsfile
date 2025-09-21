@@ -22,18 +22,10 @@ pipeline {
                         pip install --upgrade pip
                         pwd
                         pip install -r ${REQUIREMENTS_FILE}
+                        python3 helloworld.py --name Achouri
                     """
                  }
              }
-        }
-    stage('Build') {
-        steps {
-            echo "Building.."
-            sh '''
-            cd myapp
-            python3 helloworld.py --name Achouri
-            '''
-        }
-    }   
+        }   
     }
 }

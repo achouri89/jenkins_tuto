@@ -1,3 +1,4 @@
+# Use the official Jenkins image as a base image
 FROM jenkins/jenkins:2.516.3-jdk21
 USER root
 RUN apt-get update && apt-get install -y lsb-release ca-certificates curl && \

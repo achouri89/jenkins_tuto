@@ -19,7 +19,7 @@ pipeline {
                     cd myapp
                     python3 --version
                     apt update
-                    apt install python3-venv
+                    apt install python3-venv -y
 
                     python3 -m venv venv
                     #!/bin/bash

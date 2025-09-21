@@ -18,6 +18,8 @@ pipeline {
                     // Activate virtual environment and install dependencies
                     sh """
                         pwd
+                        """
+                    sh """
                         source ${VIRTUAL_ENV_PATH}/bin/activate
                         pip install --upgrade pip
                         pip install -r ${REQUIREMENTS_FILE}

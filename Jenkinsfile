@@ -18,8 +18,8 @@ pipeline {
                     sh '''
                     cd myapp
                     python3 --version
-                    sudo apt update
-                    sudo apt install python3-venv
+                    apt update
+                    apt install python3-venv
 
                     python3 -m venv venv
                     #!/bin/bash

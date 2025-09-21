@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         VIRTUAL_ENV_PATH = '/venv'  // Relative path to the virtual environment
-        REQUIREMENTS_FILE = '/requirements.txt'  // Relative path to the requirements.txt file
+        REQUIREMENTS_FILE = 'requirements.txt'  // Relative path to the requirements.txt file
     }
 
     stages {

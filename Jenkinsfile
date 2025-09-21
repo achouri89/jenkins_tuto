@@ -22,7 +22,7 @@ pipeline {
                         """
                     sh """
                         cd myapp/
-                        source ${VIRTUAL_ENV_PATH}/bin/activate
+                        . ${VIRTUAL_ENV_PATH}/bin/activate
                         pip install --upgrade pip
                         pip install -r ${REQUIREMENTS_FILE}
                     """

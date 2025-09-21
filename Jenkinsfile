@@ -2,7 +2,7 @@ pipeline {
     agent any  // or specify a custom agent like 'docker'
 
     environment {
-        VIRTUAL_ENV_PATH = 'venv'  // Relative path to the virtual environment
+        VIRTUAL_ENV_PATH = '/venv'  // Relative path to the virtual environment
         REQUIREMENTS_FILE = '/requirements.txt'  // Relative path to the requirements.txt file
     }
 
@@ -26,7 +26,7 @@ pipeline {
                     #!/bin/bash
 
                     # Activate the virtual environment
-                    . /$VIRTUAL_ENV_PATH/bin/activate
+                    . $VIRTUAL_ENV_PATH/bin/activate
 
                     # Check if the virtual environment was activated
                     if [ -z "$VIRTUAL_ENV" ]; then

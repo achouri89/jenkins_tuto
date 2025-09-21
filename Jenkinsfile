@@ -19,8 +19,7 @@ pipeline {
                         // Install dependencies from requirements.txt
                         sh 'whoami'
                         sh '''
-                              apk update
-                              apk add --no-cache fire
+                        python3 --version
                             '''
                     }
                 }

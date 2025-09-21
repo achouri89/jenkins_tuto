@@ -11,11 +11,19 @@ pipeline {
         stage('Setup Python Virtual Environment') {
             steps {
                 script {
-                    sh '''
-                        python3 -m venv /myapp/venv
-                        . /myapp/venv/bin/activate
-                        pip3 install fire
-                    '''
+                    echo "Setting up Python Virtual Environment.."
+                    // Navigate to the project directory
+                    //cd myapp
+                    // Create a virtual environment
+                    //sh 'python3 -m venv venv'
+                    // Activate the virtual environment and install dependencies
+                    
+                    //sh '''
+                    //    python3 -m venv /myapp/venv
+                    //    . /myapp/venv/bin/activate
+                    //    pip3 install fire
+                    //'''
+                
                 }
             }
         }

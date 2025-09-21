@@ -8,13 +8,20 @@ pipeline {
         pollSCM 'H/5 * * * *'
     } 
     stages {
-        stage('Setup Python Virtual Environment') {
+       stage('Setup Python Virtual Environment') {
             steps {
                 script {
-                    echo "Setting up Python Virtual Environment.."
-                    // Navigate to the project directory
-                    //cd myapp
-                    sh 'cd myapp && python3 -m venv venv && . venv/bin/activate && pip install fire && deactivate nondestructive'
+                    // Navigate to the project directory (if needed)
+                    dir('myapp') {
+                        // Create virtual environment
+                        sh 'python3 -m venv venv'
+                        
+                        // Activate the virtual environment
+                        sh '. venv/bin/activate && pip install --upgrade pip' // Upgrade pip if needed
+                        
+                        // Install dependencies from requirements.txt
+                        sh '. venv/bin/activate && pip install -r requirements.txt'
+                    }
                 }
             }
         }

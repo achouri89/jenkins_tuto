@@ -20,6 +20,7 @@ pipeline {
                         sh 'whoami'
                         sh '''
                         python3 --version
+                        pip3 --version
                             '''
                     }
                 }

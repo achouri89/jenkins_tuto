@@ -2,8 +2,8 @@ pipeline {
     agent any  // or specify a custom agent like 'docker'
 
     environment {
-        VIRTUAL_ENV_PATH = 'myapp/venv'  // Relative path to the virtual environment
-        REQUIREMENTS_FILE = 'myapp/requirements.txt'  // Relative path to the requirements.txt file
+        VIRTUAL_ENV_PATH = '/venv'  // Relative path to the virtual environment
+        REQUIREMENTS_FILE = '/requirements.txt'  // Relative path to the requirements.txt file
     }
 
     stages {
@@ -21,6 +21,7 @@ pipeline {
                         pwd
                         """
                     sh """
+                        cd myapp/
                         source ${VIRTUAL_ENV_PATH}/bin/activate
                         pip install --upgrade pip
                         pip install -r ${REQUIREMENTS_FILE}

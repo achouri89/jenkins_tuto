@@ -23,7 +23,7 @@ pipeline {
 
                     python3 -m venv venv
                     ls -la
-                    ls /venv/bin/activate
+                    cd /venv
                     #!/bin/bash
 
                     # Activate the virtual environment

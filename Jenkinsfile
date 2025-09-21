@@ -14,16 +14,14 @@ pipeline {
                     // Navigate to the project directory (if needed)
                     dir('myapp') {
                         // Create virtual environment
-                        sh 'python3 -m venv venv'
                         
                         // Activate the virtual environment
                         // Install dependencies from requirements.txt
-                        sh '''
-                            . venv/bin/activate
-                            pip install --upgrade pip
-                        '''
                         sh 'whoami'
-                        sh 'apk install fire'
+                        sh '''
+                              apk update
+                              apk add --no-cache fire
+                            '''
                     }
                 }
             }

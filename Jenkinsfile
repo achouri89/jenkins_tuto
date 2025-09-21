@@ -17,7 +17,7 @@ pipeline {
                     }
                     // Activate virtual environment and install dependencies
                     sh """
-                        cd myapp
+                        cd myapp/venv/bin/
                         pwd
                         """
                     sh """
